@@ -40,13 +40,14 @@ class MahasiswaController
         $masalah_kedua1 = $this->connection->conn->real_escape_string(htmlspecialchars($data["masalah_kedua1"]));
         $masalah_kedua2 = $this->connection->conn->real_escape_string(htmlspecialchars($data["masalah_kedua2"]));
 
-        $query = "INSERT INTO tabel_proposal (nama_mahasiswa, npm, jurusan, tempat_tanggal_lahir, alamat, no_telepon, judul_pertama, masalah_pertama1, masalah_pertama2, masalah_pertama3, judul_kedua, masalah_kedua1, masalah_kedua2)
+        $query = "INSERT INTO tabel_proposal
+         (nama_mahasiswa, npm, jurusan, tempat_tanggal_lahir, alamat, no_telepon, judul_pertama, masalah_pertama1, masalah_pertama2, masalah_pertama3, judul_kedua, masalah_kedua1, masalah_kedua2)
                                 VALUES
-                ('$nama_mahasiswa', '$npm', '$jurusan', '$tempat_tanggal_lahir', '$alamat', '$no_telepon', '$judul_pertama', '$masalah_pertama1', '$masalah_pertama2', '$masalah_pertama2', '$masalah_pertama3', '$judul_kedua', '$masalah_kedua1', '$masalah_kedua2')
+                ('$nama_mahasiswa', '$npm', '$jurusan', '$tempat_tanggal_lahir', '$alamat', '$no_telepon', '$judul_pertama', '$masalah_pertama1', '$masalah_pertama2', '$masalah_pertama3', '$judul_kedua', '$masalah_kedua1', '$masalah_kedua2')
                         ";
 
-        $this->connection->conn->query($query);
-        return $this->connection->conn->affected_rows;
+        mysqli_query($this->connection->conn, $query);
+        return mysqli_affected_rows($this->connection->conn);
     }
 
     public function updateData($data)
@@ -82,6 +83,7 @@ class MahasiswaController
                         masalah_kedua2 = '$masalah_kedua2',
                         WHERE id_proposal = '$id_proposal'
             ";
+
         mysqli_query($this->connection->conn, $queryUpdate);
         return mysqli_affected_rows($this->connection->conn);
     }

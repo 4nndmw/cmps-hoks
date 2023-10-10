@@ -2,7 +2,8 @@
     require '../../controllers/mahasiswa_controller/Mahasiswa_controller.php';
     $mahasiswa = new MahasiswaController();
 
-    var_dump($mahasiswa->queryAll());
+    // var_dump($mahasiswa->queryAll());
+
     if (isset($_POST['submit'])) {
         if ($mahasiswa->insertData($_POST) > 0) {
             echo "
@@ -11,10 +12,15 @@
                     document.location.href = '';
                 </script>
             ";
+        } else {
+            echo "
+            <script>
+                alert('berhasil menambahkan data');
+                document.location.href = '';
+            </script>
+        ";
         }
     }
-
-
 
     ?>
 
@@ -43,7 +49,7 @@
                  <div class="sidebar-header">
                      <div class="d-flex justify-content-between">
                          <div class="logo">
-                             <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                             <a href="index.html"><img src="../../dist/assets/images/logo/logo.jpg" style="width: 100px; height: 100px;" alt="Logo" srcset=""></a>
                          </div>
                          <div class="toggler">
                              <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -209,20 +215,18 @@
                                      <a href="form-editor-summernote.html">Summernote</a>
                                  </li>
                                  <li class="submenu-item ">
-                                     <a href="form-editor-tinymce.html">TinyMCE</a>
+                                     <a href="form-editor-tinymce.php">TinyMCE</a>
                                  </li>
                              </ul>
                          </li>
-
                          <li class="sidebar-item  ">
                              <a href="tabel_judul_mahasiswa.php" class='sidebar-link'>
                                  <i class="bi bi-grid-1x2-fill"></i>
                                  <span>Table</span>
                              </a>
                          </li>
-
                          <li class="sidebar-item  ">
-                             <a href="table-datatable.html" class='sidebar-link'>
+                             <a href="table-datatable.php" class='sidebar-link'>
                                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                  <span>Datatable</span>
                              </a>
@@ -306,28 +310,28 @@
                          <li class="sidebar-title">Pages</li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-email.html" class='sidebar-link'>
+                             <a href="application-email.php" class='sidebar-link'>
                                  <i class="bi bi-envelope-fill"></i>
                                  <span>Email Application</span>
                              </a>
                          </li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-chat.html" class='sidebar-link'>
+                             <a href="application-chat.php" class='sidebar-link'>
                                  <i class="bi bi-chat-dots-fill"></i>
                                  <span>Chat Application</span>
                              </a>
                          </li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-gallery.html" class='sidebar-link'>
+                             <a href="application-gallery.php" class='sidebar-link'>
                                  <i class="bi bi-image-fill"></i>
                                  <span>Photo Gallery</span>
                              </a>
                          </li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-checkout.html" class='sidebar-link'>
+                             <a href="application-checkout.php" class='sidebar-link'>
                                  <i class="bi bi-basket-fill"></i>
                                  <span>Checkout Page</span>
                              </a>
@@ -427,7 +431,7 @@
                      <form method="post" action="">
                          <div class="card">
                              <div class="card-header">
-                                 <h4 class="card-title">Input Data </h4>
+                                 <h4 class="card-title">Input Data Mahasiswa</h4>
                              </div>
 
                              <div class="card-body">
@@ -466,7 +470,7 @@
 
                          <div class="card">
                              <div class="card-header">
-                                 <h4 class="card-title">Input Data </h4>
+                                 <h4 class="card-title">Input Judul Skripsi </h4>
                              </div>
                              <div class="card-body">
                                  <div class="row">
@@ -523,10 +527,10 @@
              </footer>
          </div>
      </div>
-     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-     <script src="assets/js/bootstrap.bundle.min.js"></script>
+     <script src="../../dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+     <script src="../../dist/assets/js/bootstrap.bundle.min.js"></script>
 
-     <script src="assets/js/main.js"></script>
+     <script src="../../dist/assets/js/main.js"></script>
  </body>
 
  </html>

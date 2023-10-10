@@ -32,7 +32,7 @@
                  <div class="sidebar-header">
                      <div class="d-flex justify-content-between">
                          <div class="logo">
-                             <a href="index.html"><img src="assets/images/logo/logo.png" style="width: 100px; height: 100px;" alt="Logo" srcset=""></a>
+                             <a href="index.html"><img src="../../dist/assets/images/logo/logo.jpg" style="width: 100px; height: 100px;" alt="Logo" srcset=""></a>
                          </div>
                          <div class="toggler">
                              <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -396,15 +396,13 @@
              <div class="page-heading">
                  <div class="page-title">
                      <div class="row">
-                         <div class="col-12 col-md-6 order-md-1 order-last">
-                             <h3>Table</h3>
-                             <p class="text-subtitle text-muted">For user to check they list</p>
+                         <div class="col-12 col-md-6 order-md-1 order-last mb-10">
+                             <h3>Admin / Kaprodi</h3>
                          </div>
                          <div class="col-12 col-md-6 order-md-2 order-first">
                              <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                  <ol class="breadcrumb">
-                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                     <li class="breadcrumb-item active" aria-current="page">Table</li>
+                                     <div>Terakhir di kunjungi, <code>kemarin 20:22</code></div>
                                  </ol>
                              </nav>
                          </div>
@@ -419,18 +417,10 @@
                              <div class="col-12">
                                  <div class="card">
                                      <div class="card-header">
-                                         <h4 class="card-title">Bordered table</h4>
+                                         <h4 class="card-title">Form Update Data Mahasiswa</h4>
                                      </div>
                                      <div class="card-content">
-                                         <div class="card-body">
-                                             <p class="card-text">Add <code>.table-bordered</code> for borders on all sides
-                                                 of the table
-                                                 and
-                                                 cells. For
-                                                 Inverse Dark Table, add <code>.table-dark</code> along with
-                                                 <code>.table-bordered</code>.
-                                             </p>
-                                         </div>
+
                                          <!-- table bordered -->
                                          <form method="post" action="">
                                              <div class="table-responsive">
