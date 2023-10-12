@@ -2,9 +2,6 @@
     require '../../controllers/mahasiswa_controller/Mahasiswa_controller.php';
     $mahasiswa = new MahasiswaController();
 
-
-
-
     ?>
 
  <!DOCTYPE html>
