@@ -451,7 +451,7 @@
                                                              <th>JUDUL KEDUA</th>
                                                              <th>MASALAH 1</th>
                                                              <th>MASALAH 2</th>
-                                                             <th>ACTION</th>
+
                                                          </tr>
                                                      </thead>
                                                      <?php $i = 1; ?>
@@ -472,10 +472,7 @@
                                                                  <td> <?= $mhs['judul_kedua'] ?> </td>
                                                                  <td> <?= $mhs['masalah_kedua1'] ?> </td>
                                                                  <td> <?= $mhs['masalah_kedua2'] ?> </td>
-                                                                 <td class="d-flex ">
-                                                                     <a href="" class="btn btn-warning py-1">Update</a> |
-                                                                     <a href="" class="btn btn-danger py-1">Delete</a>
-                                                                 </td>
+
                                                              </tr>
                                                          </tbody>
                                                      <?php endforeach; ?>
