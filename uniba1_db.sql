@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1-1.fc38
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 13, 2023 at 11:04 AM
--- Server version: 8.0.34
--- PHP Version: 8.1.24
+-- Host: localhost:3306
+-- Generation Time: Oct 16, 2023 at 03:02 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,14 +30,24 @@ SET time_zone = "+00:00";
 CREATE TABLE `tabel_jadwal` (
   `id_jadwal` int NOT NULL,
   `id_proposal` int NOT NULL,
-  `jurusan` varchar(255) NOT NULL,
   `hari_tanggal` varchar(255) NOT NULL,
-  `jam` int NOT NULL,
+  `jam` varchar(50) NOT NULL,
   `tempat_sidang` varchar(255) NOT NULL,
   `dosen_pembimbing1` varchar(255) NOT NULL,
   `dosen_pembimbing2` varchar(255) NOT NULL,
   `naskah` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tabel_jadwal`
+--
+
+INSERT INTO `tabel_jadwal` (`id_jadwal`, `id_proposal`, `hari_tanggal`, `jam`, `tempat_sidang`, `dosen_pembimbing1`, `dosen_pembimbing2`, `naskah`) VALUES
+(4, 8, 'senin', '12 wib', 'cempaka', 'fajar', 'wiwid', 'dadu'),
+(5, 9, 'minggu', '13:00', 'laboratorium', 'jami', 'sindi', 'kola'),
+(6, 10, 'senin, 20-23-2023', '12', 'sumenep', 'makruf', 'aerrar', 'hesesosas'),
+(7, 11, 'senin, 20-23-2023', '06:00', 'ccempaka23', 'fajar', 'wiwid', 'haiiii'),
+(8, 12, 'senin, 20-23-2023', '06:00', 'cempaka', 'makruf', 'amin234', 'hesesosas');
 
 -- --------------------------------------------------------
 
@@ -53,13 +63,6 @@ CREATE TABLE `tabel_nilai_sempro` (
   `nilai_total` float NOT NULL,
   `nilai_mutu` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `tabel_nilai_sempro`
---
-
-INSERT INTO `tabel_nilai_sempro` (`id_sempro`, `id_proposal`, `dosen_pembimbing1`, `dosen_pembimbing2`, `nilai_total`, `nilai_mutu`) VALUES
-(1, 1, 'pak fajar', 'pak iqbal', 22.222, 'A');
 
 -- --------------------------------------------------------
 
@@ -89,12 +92,11 @@ CREATE TABLE `tabel_proposal` (
 --
 
 INSERT INTO `tabel_proposal` (`id_proposal`, `nama_mahasiswa`, `npm`, `jurusan`, `tempat_tanggal_lahir`, `alamat`, `no_telepon`, `judul_pertama`, `masalah_pertama1`, `masalah_pertama2`, `masalah_pertama3`, `judul_kedua`, `masalah_kedua1`, `masalah_kedua2`) VALUES
-(1, 'ananda', '2202310022', 'informatika', 'sumenep 3 maret 2003', 'bangkal', '081233995872', 'judul pertama', 'masalah pertama', 'masalah pertama2', 'masalah pertama3', 'judul kedua', 'masalah kedua1\r\n', 'masalah kedua2'),
-(2, 'maulana', '2202310055', 'sistem informasi', 'sumenep 3 maret 2004', 'pamolokan, 31 februari 2004', '081233998734', 'hello word', 'hello1', 'hello2', 'hello3', 'hello word2', 'word1', 'word2'),
-(3, 'wahyudi', '2202310099', 'manage', 'sumenep', 'pangarangan', '082445454665', 'qweqwew', 'eiiosdn', 'sndldsv', 'sodnnsn', 'sdvdvnsn', 'anov', 'adoapp'),
-(4, 'wahyudi', '2202310099', 'informatika', 'sumenep', 'bangkal', '081233995872', 'qweqwew', 'putus 1', 'putus 2', 'putus 3', 'judul 2', 'putus 1', 'putus 2'),
-(5, 'sdfgh', '22344434', 'fgh', 'sfsdfsd', 'fsfsdfsdf', '21332435', 'asfdsdgf', 'dgegfgf', 'sfgsfg', 'segsg', 'segg', 'sefgsh', 'sghgfhfh'),
-(6, 'ananda maulana wahyudi', '2202310022', 'informatika', 'sumenep 3 maret 2003', 'bangkal', '081233995872', 'judul1', 'masalah pertama1', 'masalah pertama2', 'masahala pertama3', 'judul kedua', 'masalah kedua1', 'masalah kedua2');
+(8, 'ananda maulana w', '2202310054', 'informatika', 'sumenep, 31-03-2003', 'bangkal', '081233995872', 'wertyu', 'wertyu', 'werty', 'sdfghj', 'fgh', 'dfghjk', 'sdfghjk'),
+(9, 'wahyudi', '2202310064', 'management', 'sumenep ', 'pangarangan', '08123456789', 'werty', 'ghj', 'sgsgfsdfgsgsdg', 'sdgsgsg', 'gjdghdg', 'gsfggfg', 'dfgdgfg'),
+(10, 'bariq', '1232434', 'management', 'sumenep', 'pangarangan', '081233995872', 'afdfsfdsdga', 'sdfdsaf', 'jfggfdh', 'fghdhg', 'sfgsgf', 'sfgsgfg', 'sdgsdfg'),
+(11, 'berry', '234242424', 'informatika', 'sumenep, 31-23-2003', 'BSA', '01232434424', 'apasaja aadf', 'adfafadfa', 'sgsgfg', 'sdgsdgs', 'sgsgdfg', 'dgsgs', 'adgdgddfg'),
+(12, 'maulana', '09q83q', 'managemen', 'sumenep 33 3e332', 'banga', '35345455', 'affadfsdf', 'afssdfdfs', 'fsdfsdf', 'sdfdsfsd', 'ddffsdfsdf', 'dsddgd', 'dvsdfd');
 
 --
 -- Indexes for dumped tables
@@ -128,7 +130,7 @@ ALTER TABLE `tabel_proposal`
 -- AUTO_INCREMENT for table `tabel_jadwal`
 --
 ALTER TABLE `tabel_jadwal`
-  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tabel_nilai_sempro`
@@ -140,11 +142,17 @@ ALTER TABLE `tabel_nilai_sempro`
 -- AUTO_INCREMENT for table `tabel_proposal`
 --
 ALTER TABLE `tabel_proposal`
-  MODIFY `id_proposal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_proposal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tabel_jadwal`
+--
+ALTER TABLE `tabel_jadwal`
+  ADD CONSTRAINT `tabel_jadwal_ibfk_1` FOREIGN KEY (`id_proposal`) REFERENCES `tabel_proposal` (`id_proposal`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tabel_nilai_sempro`
