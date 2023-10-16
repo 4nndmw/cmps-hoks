@@ -2,6 +2,31 @@
     require '../../controllers/mahasiswa_controller/Mahasiswa_controller.php';
     $mahasiswa = new MahasiswaController();
 
+    // var_dump($mahasiswa->queryAll());
+
+    // $id = $_GET['id'];
+
+    // $mhs = $mahasiswa->queryAll("SELECT * FROM tabel_proposal WHERE id_proposal = $id")[0];
+
+
+    if (isset($_POST['submit'])) {
+        if ($mahasiswa->updateData($_POST) > 0) {
+            echo "
+                <script>
+                    alert('berhasil menambahkan data');
+                    document.location.href = '';
+                </script>
+            ";
+        } else {
+            echo "
+            <script>
+                alert('berhasil menambahkan data');
+                document.location.href = '';
+            </script>
+        ";
+        }
+    }
+
     ?>
 
  <!DOCTYPE html>
@@ -10,7 +35,7 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Page Table Judul Mahasiswa </title>
+     <title>update Judul Skripsi</title>
 
      <link rel="preconnect" href="https://fonts.gstatic.com">
      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -145,14 +170,14 @@
 
                          <li class="sidebar-title">Forms &amp; Tables</li>
 
-                         <li class="sidebar-item  has-sub">
+                         <li class="sidebar-item active has-sub">
                              <a href="#" class='sidebar-link'>
                                  <i class="bi bi-hexagon-fill"></i>
-                                 <span>Form Elements</span>
+                                 <span>Halaman Form </span>
                              </a>
-                             <ul class="submenu ">
-                                 <li class="submenu-item ">
-                                     <a href="input_judul_mahasiswa.php">Input</a>
+                             <ul class="submenu active">
+                                 <li class="submenu-item active">
+                                     <a href="#">Input Judul</a>
                                  </li>
                                  <li class="submenu-item ">
                                      <a href="form-element-input-group.html">Input Group</a>
@@ -195,20 +220,18 @@
                                      <a href="form-editor-summernote.html">Summernote</a>
                                  </li>
                                  <li class="submenu-item ">
-                                     <a href="form-editor-tinymce.html">TinyMCE</a>
+                                     <a href="form-editor-tinymce.php">TinyMCE</a>
                                  </li>
                              </ul>
                          </li>
-
-                         <li class="sidebar-item active ">
-                             <a href="table.html" class='sidebar-link'>
+                         <li class="sidebar-item  ">
+                             <a href="tabel_judul_mahasiswa.php" class='sidebar-link'>
                                  <i class="bi bi-grid-1x2-fill"></i>
                                  <span>Table</span>
                              </a>
                          </li>
-
                          <li class="sidebar-item  ">
-                             <a href="table-datatable.html" class='sidebar-link'>
+                             <a href="table-datatable.php" class='sidebar-link'>
                                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                  <span>Datatable</span>
                              </a>
@@ -292,28 +315,28 @@
                          <li class="sidebar-title">Pages</li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-email.html" class='sidebar-link'>
+                             <a href="application-email.php" class='sidebar-link'>
                                  <i class="bi bi-envelope-fill"></i>
                                  <span>Email Application</span>
                              </a>
                          </li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-chat.html" class='sidebar-link'>
+                             <a href="application-chat.php" class='sidebar-link'>
                                  <i class="bi bi-chat-dots-fill"></i>
                                  <span>Chat Application</span>
                              </a>
                          </li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-gallery.html" class='sidebar-link'>
+                             <a href="application-gallery.php" class='sidebar-link'>
                                  <i class="bi bi-image-fill"></i>
                                  <span>Photo Gallery</span>
                              </a>
                          </li>
 
                          <li class="sidebar-item  ">
-                             <a href="application-checkout.html" class='sidebar-link'>
+                             <a href="application-checkout.php" class='sidebar-link'>
                                  <i class="bi bi-basket-fill"></i>
                                  <span>Checkout Page</span>
                              </a>
@@ -393,89 +416,107 @@
              <div class="page-heading">
                  <div class="page-title">
                      <div class="row">
-                         <div class="col-12 col-md-6 order-md-1 order-last mb-10">
-                             <h3>Admin / Kaprodi</h3>
+                         <div class="col-12 col-md-6 order-md-1 order-last">
+                             <h3>Input</h3>
+                             <p class="text-subtitle text-muted">Give textual form controls like input upgrade with
+                                 custom styles,
+                                 sizing, focus states, and more.</p>
                          </div>
                          <div class="col-12 col-md-6 order-md-2 order-first">
                              <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                  <ol class="breadcrumb">
-                                     <div>Terakhir di kunjungi, <code>kemarin 20:22</code></div>
+                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                     <li class="breadcrumb-item active" aria-current="page">Input</li>
                                  </ol>
                              </nav>
                          </div>
                      </div>
                  </div>
-
-
-                 <!-- Bordered table start -->
-                 <form method="post" action="">
-                     <section class="section">
-                         <div class="row" id="table-bordered">
-                             <div class="col-12">
-                                 <div class="card">
-                                     <div class="card-header">
-                                         <h4 class="card-title">Form Update Data Mahasiswa</h4>
+                 <section class="section">
+                     <form method="post" action="">
+                         <div class="card">
+                             <div class="card-header">
+                                 <h4 class="card-title">update Data Mahasiswa</h4>
+                             </div>
+                             <div class="card-body">
+                                 <div class="row">
+                                     <div class="col-md-6">
+                                         <div class="form-group">
+                                             <label for="basicInput">Nama Mahasiswa</label>
+                                             <input type="text" class="form-control" id="basicInput" value=" <?= $mhs['nama_mahasiswa'] ?> " name="nama_mahasiswa">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Npm</label>
+                                             <input type="text" class="form-control" id="basicInput" name="npm">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Jurusan</label>
+                                             <input type="text" class="form-control" id="basicInput" name="jurusan">
+                                         </div>
                                      </div>
-                                     <div class="card-content">
-
-                                         <!-- table bordered -->
-                                         <form method="post" action="">
-                                             <div class="table-responsive">
-                                                 <table class="table table-bordered mb-0">
-                                                     <thead class="text-center">
-                                                         <tr class="px-lg-0 ">
-                                                             <th>No</th>
-                                                             <th>NAMA</th>
-                                                             <th>NPM</th>
-                                                             <th>JURUSAN</th>
-                                                             <th>TEMPAT TANGGAL LAHIR</th>
-                                                             <th>ALAMAT</th>
-                                                             <th>NO TELEPON</th>
-                                                             <th>JUDUL PERTAMA</th>
-                                                             <th>MASALAH 1</th>
-                                                             <th>MASALAH 2</th>
-                                                             <th>MASALAH 3</th>
-                                                             <th>JUDUL KEDUA</th>
-                                                             <th>MASALAH 1</th>
-                                                             <th>MASALAH 2</th>
-                                                             <th>ACTION</th>
-                                                         </tr>
-                                                     </thead>
-                                                     <?php $i = 1; ?>
-                                                     <?php foreach ($mahasiswa->queryAll() as $mhs) : ?>
-                                                         <tbody>
-                                                             <tr>
-                                                                 <td> <?= $i++ ?> </td>
-                                                                 <td> <?= $mhs['nama_mahasiswa'] ?> </td>
-                                                                 <td class="text-bold-500"> <?= $mhs['npm'] ?> </td>
-                                                                 <td> <?= $mhs['jurusan']  ?> </td>
-                                                                 <td> <?= $mhs['tempat_tanggal_lahir'] ?> </td>
-                                                                 <td> <?= $mhs['alamat'] ?> </td>
-                                                                 <td> <?= $mhs['no_telepon'] ?> </td>
-                                                                 <td> <?= $mhs['judul_pertama'] ?> </td>
-                                                                 <td> <?= $mhs['masalah_pertama1'] ?> </td>
-                                                                 <td> <?= $mhs['masalah_pertama2'] ?> </td>
-                                                                 <td> <?= $mhs['masalah_pertama3'] ?> </td>
-                                                                 <td> <?= $mhs['judul_kedua'] ?> </td>
-                                                                 <td> <?= $mhs['masalah_kedua1'] ?> </td>
-                                                                 <td> <?= $mhs['masalah_kedua2'] ?> </td>
-                                                                 <td class="d-flex ">
-                                                                     <a href="" class="btn btn-warning py-1">Update</a> |
-                                                                     <a href="" class="btn btn-danger py-1">Delete</a>
-                                                                 </td>
-                                                             </tr>
-                                                         </tbody>
-                                                     <?php endforeach; ?>
-                                                 </table>
-                                             </div>
-                                         </form>
+                                     <div class="col-md-6">
+                                         <div class="form-group">
+                                             <label for="basicInput">Tempat Tanggal Lahir</label>
+                                             <input type="text" class="form-control" id="basicInput" name="tempat_tanggal_lahir">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Alamat</label>
+                                             <input type="text" class="form-control" id="basicInput" name="alamat">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">No Telepon</label>
+                                             <input type="text" class="form-control" id="basicInput" name="no_telepon">
+                                         </div>
                                      </div>
                                  </div>
                              </div>
                          </div>
-                     </section>
-                 </form>
-                 <!-- Bordered table end -->
+
+                         <div class="card">
+                             <div class="card-header">
+                                 <h4 class="card-title">Input Judul Skripsi </h4>
+                             </div>
+                             <div class="card-body">
+                                 <div class="row">
+                                     <div class="col-md-6">
+                                         <div class="form-group">
+                                             <label for="basicInput">Judul 1 </label>
+                                             <input type="text" class="form-control" id="basicInput" name="judul_pertama">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Masalah 1:</label>
+                                             <input type="text" class="form-control" id="basicInput" name="masalah_pertama1">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Masalah 2:</label>
+                                             <input type="text" class="form-control" id="basicInput" name="masalah_pertama2">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Masalah 3:</label>
+                                             <input type="text" class="form-control" id="basicInput" name="masalah_pertama3">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-md-6">
+                                         <div class="form-group">
+                                             <label for="basicInput">Judul 2</label>
+                                             <input type="text" class="form-control" id="basicInput" name="judul_kedua">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Masalah 1:</label>
+                                             <input type="text" class="form-control" id="basicInput" name="masalah_kedua1">
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="basicInput">Masalah 2:</label>
+                                             <input type="text" class="form-control" id="basicInput" name="masalah_kedua2">
+                                         </div>
+                                     </div>
+                                     <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </form>
+                 </section>
              </div>
 
              <footer>

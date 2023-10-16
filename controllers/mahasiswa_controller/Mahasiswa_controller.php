@@ -14,8 +14,8 @@ class MahasiswaController
     {
         $query = "SELECT * FROM tabel_proposal";
         $result = $this->connection->conn->query($query);
-        $rows = [];
 
+        $rows = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $rows[] = $row;
         }

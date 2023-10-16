@@ -1,24 +1,27 @@
 <?php
-require '../../controllers/mahasiswa_controller/Mahasiswa_controller.php';
-$mahasiswa = new MahasiswaController();
+require '../../controllers/kaprodi/make_jadwal_controller.php';
 
-// var_dump($mahasiswa->queryAll());
+$jadwal = new makeJadwal();
+
+$id = $_GET["id"];
+
+
+$mahasiswa = $jadwal->find($id);
+
 
 if (isset($_POST['submit'])) {
-    if ($mahasiswa->insertData($_POST) > 0) {
-        echo "
-                <script>
-                    alert('berhasil menambahkan data');
-                    document.location.href = '';
-                </script>
-            ";
+    // var_dump($_POST);
+    // die();
+    if ($jadwal->createData($_POST) > 0) {
+        echo " <script>
+            alert('Kaprodi Berhasil Menambahakan Data Jadwal');
+            document.location.href = '';
+            </script> ";
     } else {
-        echo "
-            <script>
-                alert('berhasil menambahkan data');
-                document.location.href = '';
-            </script>
-        ";
+        echo " <script>
+            alert('Kaprodi gagal Menambahkan Data Jadwal');
+            Document.location.href = '';
+        </script> ";
     }
 }
 
@@ -30,7 +33,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Input Nilai Mahasiswa</title>
+    <title>HALAMAN MEMBUAT JADWAL</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -44,7 +47,7 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div id="app">
-        <div id="sidebar" class="active">
+        <!-- <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
@@ -355,23 +358,7 @@ if (isset($_POST['submit'])) {
                             </ul>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-x-octagon-fill"></i>
-                                <span>Errors</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="error-403.html">403</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="error-404.html">404</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="error-500.html">500</a>
-                                </li>
-                            </ul>
-                        </li>
+
 
                         <li class="sidebar-title">Raise Support</li>
 
@@ -400,7 +387,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
-        </div>
+        </div> -->
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -411,57 +398,38 @@ if (isset($_POST['submit'])) {
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Input</h3>
-                            <p class="text-subtitle text-muted">Give textual form controls like input upgrade with
-                                custom styles,
-                                sizing, focus states, and more.</p>
+                        <div class="col-12 col-md-6 order-md-1 order-last mb-10">
+                            <h3 class="">Buat Jadwal Mahasiswa</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Input</li>
+                                    <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Kaprodi</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
                 <section class="section">
+
                     <form method="post" action="">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Input Data Mahasiswa</h4>
+                                <h4 class="card-title"> Data Mahasiswa</h4>
                             </div>
-
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="basicInput">Nama Mahasiswa</label>
-                                            <input type="text" class="form-control" id="basicInput" name="nama_mahasiswa">
+                                        <input type="hidden" name="id_proposal" value="<?= $mahasiswa['id_proposal'] ?>">
+                                        <div class="form-group" style="font-size: 1.2rem;">
+                                            <label for="basicInput">Nama Mahasiswa : <?= $mahasiswa['nama_mahasiswa'] ?> </label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">Npm</label>
-                                            <input type="text" class="form-control" id="basicInput" name="npm">
+                                        <div class="form-group" style="font-size: 1.2rem;">
+                                            <label for="basicInput">Npm : <?= $mahasiswa['npm'] ?> </label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">Jurusan</label>
-                                            <input type="text" class="form-control" id="basicInput" name="jurusan">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="basicInput">Tempat Tanggal Lahir</label>
-                                            <input type="text" class="form-control" id="basicInput" name="tempat_tanggal_lahir">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">Alamat</label>
-                                            <input type="text" class="form-control" id="basicInput" name="alamat">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">No Telepon</label>
-                                            <input type="text" class="form-control" id="basicInput" name="no_telepon">
+                                        <div class="form-group" style="font-size: 1.2rem;">
+                                            <label for="basicInput">Jurusan : <?= $mahasiswa['jurusan'] ?> </label>
                                         </div>
                                     </div>
                                 </div>
@@ -470,41 +438,39 @@ if (isset($_POST['submit'])) {
 
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Input Judul Skripsi </h4>
+                                <h4 class="card-title"> Buat Jadwal Untuk " <?= $mahasiswa['nama_mahasiswa'] ?> ". </h4>
                             </div>
+
+
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="basicInput">Judul 1 </label>
-                                            <input type="text" class="form-control" id="basicInput" name="judul_pertama">
+                                            <label for="basicInput"> Hari/Tanggal :</label>
+                                            <input type="text" class="form-control" id="basicInput" name="hari_tanggal">
                                         </div>
                                         <div class="form-group">
-                                            <label for="basicInput">Masalah 1:</label>
-                                            <input type="text" class="form-control" id="basicInput" name="masalah_pertama1">
+                                            <label for="basicInput">Jam :</label>
+                                            <input type="text" class="form-control" id="basicInput" name="jam">
                                         </div>
                                         <div class="form-group">
-                                            <label for="basicInput">Masalah 2:</label>
-                                            <input type="text" class="form-control" id="basicInput" name="masalah_pertama2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">Masalah 3:</label>
-                                            <input type="text" class="form-control" id="basicInput" name="masalah_pertama3">
+                                            <label for="basicInput">Tempat Sidang :</label>
+                                            <input type="text" class="form-control" id="basicInput" name="tempat_sidang">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="basicInput">Judul 2</label>
-                                            <input type="text" class="form-control" id="basicInput" name="judul_kedua">
+                                            <label for="basicInput">Dosen Pembimbing 1 :</label>
+                                            <input type="text" class="form-control" id="basicInput" name="dosen_pembimbing1">
                                         </div>
                                         <div class="form-group">
-                                            <label for="basicInput">Masalah 1:</label>
-                                            <input type="text" class="form-control" id="basicInput" name="masalah_kedua1">
+                                            <label for="basicInput">Dosen Pembimbing 2 :</label>
+                                            <input type="text" class="form-control" id="basicInput" name="dosen_pembimbing2">
                                         </div>
                                         <div class="form-group">
-                                            <label for="basicInput">Masalah 2:</label>
-                                            <input type="text" class="form-control" id="basicInput" name="masalah_kedua2">
+                                            <label for="basicInput">Naskah :</label>
+                                            <input type="text" class="form-control" id="basicInput" name="naskah">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
@@ -512,17 +478,18 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                     </form>
+
                 </section>
             </div>
 
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
+                        <p>2023 &copy; Uniba Madura</p>
                     </div>
-                    <div class="float-end">
+                    <!-- <div class="float-end">
                         <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a></p>
-                    </div>
+                    </div> -->
                 </div>
             </footer>
         </div>

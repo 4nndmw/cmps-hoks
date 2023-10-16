@@ -2,9 +2,6 @@
     require '../../controllers/mahasiswa_controller/Mahasiswa_controller.php';
     $mahasiswa = new MahasiswaController();
 
-
-
-
     ?>
 
  <!DOCTYPE html>
@@ -13,7 +10,7 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Table - Mazer Admin Dashboard</title>
+     <title>Page Table Judul Mahasiswa </title>
 
      <link rel="preconnect" href="https://fonts.gstatic.com">
      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -32,7 +29,7 @@
                  <div class="sidebar-header">
                      <div class="d-flex justify-content-between">
                          <div class="logo">
-                             <a href="index.html"><img src="assets/images/logo/logo.png" style="width: 100px; height: 100px;" alt="Logo" srcset=""></a>
+                             <a href="index.html"><img src="../../dist/assets/images/logo/logo.jpg" style="width: 100px; height: 100px;" alt="Logo" srcset=""></a>
                          </div>
                          <div class="toggler">
                              <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -396,15 +393,13 @@
              <div class="page-heading">
                  <div class="page-title">
                      <div class="row">
-                         <div class="col-12 col-md-6 order-md-1 order-last">
-                             <h3>Table</h3>
-                             <p class="text-subtitle text-muted">For user to check they list</p>
+                         <div class="col-12 col-md-6 order-md-1 order-last mb-10">
+                             <h3>Admin / Kaprodi</h3>
                          </div>
                          <div class="col-12 col-md-6 order-md-2 order-first">
                              <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                  <ol class="breadcrumb">
-                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                     <li class="breadcrumb-item active" aria-current="page">Table</li>
+                                     <div>Terakhir di kunjungi, <code>kemarin 20:22</code></div>
                                  </ol>
                              </nav>
                          </div>
@@ -419,18 +414,10 @@
                              <div class="col-12">
                                  <div class="card">
                                      <div class="card-header">
-                                         <h4 class="card-title">Bordered table</h4>
+                                         <h4 class="card-title">Form Update Data Mahasiswa</h4>
                                      </div>
                                      <div class="card-content">
-                                         <div class="card-body">
-                                             <p class="card-text">Add <code>.table-bordered</code> for borders on all sides
-                                                 of the table
-                                                 and
-                                                 cells. For
-                                                 Inverse Dark Table, add <code>.table-dark</code> along with
-                                                 <code>.table-bordered</code>.
-                                             </p>
-                                         </div>
+
                                          <!-- table bordered -->
                                          <form method="post" action="">
                                              <div class="table-responsive">
@@ -451,11 +438,11 @@
                                                              <th>JUDUL KEDUA</th>
                                                              <th>MASALAH 1</th>
                                                              <th>MASALAH 2</th>
-
+                                                             <th>ACTION</th>
                                                          </tr>
                                                      </thead>
-                                                     <?php $i = 1; ?>
-                                                     <?php foreach ($mahasiswa->queryAll() as $mhs) : ?>
+                                                     <?php $i = 1;
+                                                        foreach ($mahasiswa->queryAll() as $mhs) : ?>
                                                          <tbody>
                                                              <tr>
                                                                  <td> <?= $i++ ?> </td>
@@ -472,7 +459,11 @@
                                                                  <td> <?= $mhs['judul_kedua'] ?> </td>
                                                                  <td> <?= $mhs['masalah_kedua1'] ?> </td>
                                                                  <td> <?= $mhs['masalah_kedua2'] ?> </td>
-
+                                                                 <td class="d-flex ">
+                                                                     <a href="make_jadwal.php?id=<?= $mhs['id_proposal'] ?> " class="btn btn-success py-1">Make</a> |
+                                                                     <a href="update_judul_mahasiswa.php?id=<?= $mhs['id_proposal'] ?> " class="btn btn-warning py-1">Update</a> |
+                                                                     <a href="" class="btn btn-danger py-1">Delete</a> |
+                                                                 </td>
                                                              </tr>
                                                          </tbody>
                                                      <?php endforeach; ?>
@@ -491,11 +482,11 @@
              <footer>
                  <div class="footer clearfix mb-0 text-muted">
                      <div class="float-start">
-                         <p>2021 &copy; Mazer</p>
+                         <p>2023 &copy; Uniba Madura</p>
                      </div>
-                     <div class="float-end">
+                     <!-- <div class="float-end">
                          <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a></p>
-                     </div>
+                     </div> -->
                  </div>
              </footer>
          </div>

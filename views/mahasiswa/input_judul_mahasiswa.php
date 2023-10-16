@@ -168,7 +168,7 @@
                          <li class="sidebar-item active has-sub">
                              <a href="#" class='sidebar-link'>
                                  <i class="bi bi-hexagon-fill"></i>
-                                 <span>Form Elements</span>
+                                 <span>Halaman Form </span>
                              </a>
                              <ul class="submenu active">
                                  <li class="submenu-item active">
@@ -428,6 +428,7 @@
                      </div>
                  </div>
                  <section class="section">
+
                      <form method="post" action="">
                          <div class="card">
                              <div class="card-header">
