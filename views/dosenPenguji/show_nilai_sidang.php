@@ -1,25 +1,7 @@
 <?php
 require '../../controllers/dosen_penguji_controllers/nilai_sidang_controller.php';
 
-$jadwal = new dosenPenguji();
-$id = $_GET["id"];
-$mahasiswa = $jadwal->find($id);
-
-if (isset($_POST['submit'])) {
-    // var_dump($_POST);
-    // die();
-    if ($jadwal->createData($_POST) > 0) {
-        echo " <script>
-            alert('Kaprodi Berhasil Menambahakan Data Jadwal');
-            document.location.href = '';
-            </script> ";
-    } else {
-        echo " <script>
-            alert('Kaprodi gagal Menambahkan Data Jadwal');
-            Document.location.href = '';
-        </script> ";
-    }
-}
+$conn = new dosenPenguji();
 
 ?>
 
@@ -29,7 +11,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HALAMAN INPUT NILAI MAHASISWA</title>
+    <title>LIHAT NILAI MAHASISWA </title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -43,7 +25,7 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div id="app">
-        <!-- <div id="sidebar" class="active">
+        <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
@@ -164,14 +146,14 @@ if (isset($_POST['submit'])) {
 
                         <li class="sidebar-title">Forms &amp; Tables</li>
 
-                        <li class="sidebar-item active has-sub">
+                        <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-hexagon-fill"></i>
                                 <span>Form Elements</span>
                             </a>
-                            <ul class="submenu active">
-                                <li class="submenu-item active">
-                                    <a href="#">Input Judul</a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="input_judul_mahasiswa.php">Input</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="form-element-input-group.html">Input Group</a>
@@ -214,18 +196,20 @@ if (isset($_POST['submit'])) {
                                     <a href="form-editor-summernote.html">Summernote</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="form-editor-tinymce.php">TinyMCE</a>
+                                    <a href="form-editor-tinymce.html">TinyMCE</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="tabel_judul_mahasiswa.php" class='sidebar-link'>
+
+                        <li class="sidebar-item active ">
+                            <a href="table.html" class='sidebar-link'>
                                 <i class="bi bi-grid-1x2-fill"></i>
                                 <span>Table</span>
                             </a>
                         </li>
+
                         <li class="sidebar-item  ">
-                            <a href="table-datatable.php" class='sidebar-link'>
+                            <a href="table-datatable.html" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Datatable</span>
                             </a>
@@ -309,28 +293,28 @@ if (isset($_POST['submit'])) {
                         <li class="sidebar-title">Pages</li>
 
                         <li class="sidebar-item  ">
-                            <a href="application-email.php" class='sidebar-link'>
+                            <a href="application-email.html" class='sidebar-link'>
                                 <i class="bi bi-envelope-fill"></i>
                                 <span>Email Application</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="application-chat.php" class='sidebar-link'>
+                            <a href="application-chat.html" class='sidebar-link'>
                                 <i class="bi bi-chat-dots-fill"></i>
                                 <span>Chat Application</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="application-gallery.php" class='sidebar-link'>
+                            <a href="application-gallery.html" class='sidebar-link'>
                                 <i class="bi bi-image-fill"></i>
                                 <span>Photo Gallery</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="application-checkout.php" class='sidebar-link'>
+                            <a href="application-checkout.html" class='sidebar-link'>
                                 <i class="bi bi-basket-fill"></i>
                                 <span>Checkout Page</span>
                             </a>
@@ -354,7 +338,23 @@ if (isset($_POST['submit'])) {
                             </ul>
                         </li>
 
-
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-x-octagon-fill"></i>
+                                <span>Errors</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="error-403.html">403</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="error-404.html">404</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="error-500.html">500</a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="sidebar-title">Raise Support</li>
 
@@ -383,7 +383,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
-        </div> -->
+        </div>
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -395,79 +395,76 @@ if (isset($_POST['submit'])) {
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last mb-10">
-                            <h3 class="">Input Nilai Mahasiswa</h3>
+                            <h3>Admin / Dosen Penguji</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Kaprodi</li>
+                                    <div>Terakhir di kunjungi, <code>kemarin 20:22</code></div>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
-                <section class="section">
 
-                    <form method="post" action="">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title"> Data Mahasiswa</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="hidden" name="id_proposal" value="<?= $mahasiswa['id_proposal'] ?>">
-                                        <div class="form-group" style="font-size: 1.2rem;">
-                                            <label for="basicInput">Nama Mahasiswa : <?= $mahasiswa['nama_mahasiswa'] ?> </label>
-                                        </div>
-                                        <div class="form-group" style="font-size: 1.2rem;">
-                                            <label for="basicInput">Npm : <?= $mahasiswa['npm'] ?> </label>
-                                        </div>
-                                        <div class="form-group" style="font-size: 1.2rem;">
-                                            <label for="basicInput">Jurusan : <?= $mahasiswa['jurusan'] ?> </label>
-                                        </div>
+
+                <!-- Bordered table start -->
+                <form method="post" action="">
+                    <section class="section">
+                        <div class="row" id="table-bordered">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Form Jadwal Mahasiswa</h4>
+                                    </div>
+                                    <div class="card-content">
+
+                                        <!-- table bordered -->
+                                        <form method="post" action="">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered mb-0">
+                                                    <thead class="text-center">
+                                                        <tr class="px-lg-0 ">
+                                                            <th>No</th>
+                                                            <th>NAMA</th>
+                                                            <th>NPM</th>
+                                                            <th>JURUSAN</th>
+                                                            <th>DOSEN PEMBIMBING 1</th>
+                                                            <th>DOSEN PEMBIMBING 2</th>
+                                                            <th>NILAI TOTAL</th>
+                                                            <th>NILAI MUTU</th>
+                                                            <th>ACTION</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <?php $i = 1;
+                                                    foreach ($conn->queryAll() as $mhs) : ?>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td> <?= $i++ ?> </td>
+                                                                <td> <?= $mhs['nama_mahasiswa'] ?> </td>
+                                                                <td class="text-bold-500"> <?= $mhs['npm'] ?> </td>
+                                                                <td> <?= $mhs['jurusan']  ?> </td>
+                                                                <td> <?= $mhs['dosen_pembimbing1'] ?> </td>
+                                                                <td> <?= $mhs['dosen_pembimbing2'] ?> </td>
+                                                                <td> <?= $mhs['nilai_total'] ?> </td>
+                                                                <td> <?= $mhs['nilai_mutu'] ?> </td>
+                                                                <td class="d-flex ">
+                                                                    <a href="update_judul_mahasiswa.php?id=<?= $mhs['id_proposal'] ?> " class="btn btn-warning py-1">Update</a> |
+                                                                    <a href="" class="btn btn-danger py-1">Delete</a> |
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    <?php endforeach; ?>
+                                                </table>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title"> Beri Nilai Pada " <?= $mahasiswa['nama_mahasiswa'] ?> ". </h4>
-                            </div>
-
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="basicInput"> Dosen Pembimbing 1 :</label>
-                                            <input type="text" class="form-control" id="basicInput" name="dosen_pembimbing1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">Dosen Pembimbing 2 :</label>
-                                            <input type="text" class="form-control" id="basicInput" name="dosen_pembimbing2">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="basicInput">Nilai Total :</label>
-                                            <input type="text" class="form-control" id="basicInput" name="nilai_total" placeholder="0">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">Nilai Mutu :</label>
-                                            <input type="text" class="form-control" id="basicInput" name="nilai_mutu">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                </section>
+                    </section>
+                </form>
+                <!-- Bordered table end -->
             </div>
 
             <footer>
@@ -476,8 +473,8 @@ if (isset($_POST['submit'])) {
                         <p>2023 &copy; Uniba Madura</p>
                     </div>
                     <!-- <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a></p>
-                    </div> -->
+                         <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a></p>
+                     </div> -->
                 </div>
             </footer>
         </div>
