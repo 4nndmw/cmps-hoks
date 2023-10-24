@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 16, 2023 at 03:02 PM
+-- Generation Time: Oct 24, 2023 at 09:13 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -43,11 +43,8 @@ CREATE TABLE `tabel_jadwal` (
 --
 
 INSERT INTO `tabel_jadwal` (`id_jadwal`, `id_proposal`, `hari_tanggal`, `jam`, `tempat_sidang`, `dosen_pembimbing1`, `dosen_pembimbing2`, `naskah`) VALUES
-(4, 8, 'senin', '12 wib', 'cempaka', 'fajar', 'wiwid', 'dadu'),
-(5, 9, 'minggu', '13:00', 'laboratorium', 'jami', 'sindi', 'kola'),
-(6, 10, 'senin, 20-23-2023', '12', 'sumenep', 'makruf', 'aerrar', 'hesesosas'),
-(7, 11, 'senin, 20-23-2023', '06:00', 'ccempaka23', 'fajar', 'wiwid', 'haiiii'),
-(8, 12, 'senin, 20-23-2023', '06:00', 'cempaka', 'makruf', 'amin234', 'hesesosas');
+(10, 13, 'senin, 31-februari 2003', '20:00', 'cempaka', 'dosen java ', 'dosen sember', 'teknologi modern '),
+(11, 14, 'senin, 20-23-2023', '12:00', 'sumenep', 'makruf', 'aerrar', 'afaff');
 
 -- --------------------------------------------------------
 
@@ -63,6 +60,13 @@ CREATE TABLE `tabel_nilai_sempro` (
   `nilai_total` float NOT NULL,
   `nilai_mutu` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tabel_nilai_sempro`
+--
+
+INSERT INTO `tabel_nilai_sempro` (`id_sempro`, `id_proposal`, `dosen_pembimbing1`, `dosen_pembimbing2`, `nilai_total`, `nilai_mutu`) VALUES
+(2, 13, '4.00', '4.00', 4, 'A++');
 
 -- --------------------------------------------------------
 
@@ -92,11 +96,31 @@ CREATE TABLE `tabel_proposal` (
 --
 
 INSERT INTO `tabel_proposal` (`id_proposal`, `nama_mahasiswa`, `npm`, `jurusan`, `tempat_tanggal_lahir`, `alamat`, `no_telepon`, `judul_pertama`, `masalah_pertama1`, `masalah_pertama2`, `masalah_pertama3`, `judul_kedua`, `masalah_kedua1`, `masalah_kedua2`) VALUES
-(8, 'ananda maulana w', '2202310054', 'informatika', 'sumenep, 31-03-2003', 'bangkal', '081233995872', 'wertyu', 'wertyu', 'werty', 'sdfghj', 'fgh', 'dfghjk', 'sdfghjk'),
-(9, 'wahyudi', '2202310064', 'management', 'sumenep ', 'pangarangan', '08123456789', 'werty', 'ghj', 'sgsgfsdfgsgsdg', 'sdgsgsg', 'gjdghdg', 'gsfggfg', 'dfgdgfg'),
-(10, 'bariq', '1232434', 'management', 'sumenep', 'pangarangan', '081233995872', 'afdfsfdsdga', 'sdfdsaf', 'jfggfdh', 'fghdhg', 'sfgsgf', 'sfgsgfg', 'sdgsdfg'),
-(11, 'berry', '234242424', 'informatika', 'sumenep, 31-23-2003', 'BSA', '01232434424', 'apasaja aadf', 'adfafadfa', 'sgsgfg', 'sdgsdgs', 'sgsgdfg', 'dgsgs', 'adgdgddfg'),
-(12, 'maulana', '09q83q', 'managemen', 'sumenep 33 3e332', 'banga', '35345455', 'affadfsdf', 'afssdfdfs', 'fsdfsdf', 'sdfdsfsd', 'ddffsdfsdf', 'dsddgd', 'dvsdfd');
+(13, 'ananda maulana wahyudi', '2202310054', 'informatika', 'sumenep, 31 maret 2003', 'bangkal', '081233995872', 'apasaja ', 'wrw', 'ddfd', 'fgggfg', 'fgfgg', 'fgggfgg', 'gfggfggf'),
+(14, 'bariq', '03908777', 'managemen', 'sumenep, 20-februari- 2003 ', 'bangkal', '081233995872', 'nfanifhafhh', 'ahdfdhsf', 'sfgsggh', 'snnnfgnnn', 'sfhdfhdfhd', 'sdfdhhhffhf', 'nanvnvnnv');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
+(1, 'mahasiswa', 'mahasiswa', 'mahasiswa'),
+(2, 'kaprodi', 'kaprodi', 'kaprodi'),
+(3, 'penguji', 'penguji', 'penguji'),
+(4, 'pembingbing', 'pembingbing', 'pembingbing');
 
 --
 -- Indexes for dumped tables
@@ -123,6 +147,12 @@ ALTER TABLE `tabel_proposal`
   ADD PRIMARY KEY (`id_proposal`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -130,19 +160,25 @@ ALTER TABLE `tabel_proposal`
 -- AUTO_INCREMENT for table `tabel_jadwal`
 --
 ALTER TABLE `tabel_jadwal`
-  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tabel_nilai_sempro`
 --
 ALTER TABLE `tabel_nilai_sempro`
-  MODIFY `id_sempro` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_sempro` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_proposal`
 --
 ALTER TABLE `tabel_proposal`
-  MODIFY `id_proposal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_proposal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
