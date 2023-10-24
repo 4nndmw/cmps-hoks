@@ -2,25 +2,6 @@
     require '../../controllers/mahasiswa_controller/Mahasiswa_controller.php';
     $mahasiswa = new MahasiswaController();
 
-    // var_dump($mahasiswa->queryAll());
-
-    if (isset($_POST['submit'])) {
-        if ($mahasiswa->insertData($_POST) > 0) {
-            echo "
-                <script>
-                    alert('Berhasil mengirimkan Data');
-                    document.location.href = '';
-                </script>
-            ";
-        } else {
-            echo "
-            <script>
-                alert('Gagal mengirimkan data, Coba lagi !!');
-                document.location.href = '';
-            </script>
-        ";
-        }
-    }
 
     ?>
 
@@ -153,41 +134,43 @@
                      <form method="post" action="">
                          <div class="card">
                              <div class="card-header">
-                                 <h4 class="card-title">Input Data Mahasiswa</h4>
+                                 <h4 class="card-title">Data Mahasiswa</h4>
                              </div>
-
-                             <div class="card-body">
-                                 <div class="row">
-                                     <div class="col-md-6">
-                                         <div class="form-group">
-                                             <label for="basicInput">Nama Mahasiswa</label>
-                                             <input type="text" class="form-control" id="basicInput" name="nama_mahasiswa">
+                             <?php foreach ($mahasiswa->queryAll() as $mhs) : ?>
+                                 <div class="card-body">
+                                     <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="form-group">
+                                                 <label for="basicInput">Nama Mahasiswa : </label>
+                                                 <label for="basicInput"><?= $mhs['nama_mahasiswa'] ?></label>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label for="basicInput">Npm : </label>
+                                                 <label for="basicInput"><?= $mhs['npm'] ?></label>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label for="basicInput">Jurusan</label>
+                                                 <input type="text" class="form-control" id="basicInput" name="jurusan">
+                                             </div>
                                          </div>
-                                         <div class="form-group">
-                                             <label for="basicInput">Npm</label>
-                                             <input type="text" class="form-control" id="basicInput" name="npm">
-                                         </div>
-                                         <div class="form-group">
-                                             <label for="basicInput">Jurusan</label>
-                                             <input type="text" class="form-control" id="basicInput" name="jurusan">
-                                         </div>
-                                     </div>
-                                     <div class="col-md-6">
-                                         <div class="form-group">
-                                             <label for="basicInput">Tempat Tanggal Lahir</label>
-                                             <input type="text" class="form-control" id="basicInput" name="tempat_tanggal_lahir">
-                                         </div>
-                                         <div class="form-group">
-                                             <label for="basicInput">Alamat</label>
-                                             <input type="text" class="form-control" id="basicInput" name="alamat">
-                                         </div>
-                                         <div class="form-group">
-                                             <label for="basicInput">No Telepon</label>
-                                             <input type="text" class="form-control" id="basicInput" name="no_telepon">
+                                         <div class="col-md-6">
+                                             <div class="form-group">
+                                                 <label for="basicInput">Tempat Tanggal Lahir</label>
+                                                 <input type="text" class="form-control" id="basicInput" name="tempat_tanggal_lahir">
+                                             </div>
+                                             <div class="form-group">
+                                                 <label for="basicInput">Alamat</label>
+                                                 <input type="text" class="form-control" id="basicInput" name="alamat">
+                                             </div>
+                                             <div class="form-group">
+                                                 <label for="basicInput">No Telepon</label>
+                                                 <input type="text" class="form-control" id="basicInput" name="no_telepon">
+                                             </div>
                                          </div>
                                      </div>
                                  </div>
-                             </div>
+
+                             <?php endforeach; ?>
                          </div>
 
                          <div class="card">

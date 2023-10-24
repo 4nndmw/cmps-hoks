@@ -48,8 +48,6 @@ $conn = new dosenPenguji();
                             </a>
                         </li>
 
-
-
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
@@ -59,7 +57,6 @@ $conn = new dosenPenguji();
                                 <li class="submenu-item ">
                                     <a href="extra-component-avatar.html">Avatar</a>
                                 </li>
-
                             </ul>
                         </li>
 
@@ -76,7 +73,7 @@ $conn = new dosenPenguji();
                             </ul>
                         </li>
 
-                        <li class="sidebar-title">Forms &amp; Tables</li>
+                        <li class="sidebar-title">Forms &amp; Tables Mahasiswa</li>
 
                         <li class="sidebar-item active has-sub">
                             <a href="#" class='sidebar-link'>
@@ -85,12 +82,14 @@ $conn = new dosenPenguji();
                             </a>
                             <ul class="submenu active">
                                 <li class="submenu-item active">
-                                    <a href="#">Input Judul</a>
+                                    <a href="tabel_judul_mahasiswa.php">Tabel Judul Mahasiswa</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-input-group.html">Input Group</a>
+                                <li class="submenu-item active">
+                                    <a href="tabel_nilai_sidang.php">Tabel Jadwal Mahasiswa</a>
                                 </li>
-
+                                <li class="submenu-item active">
+                                    <a href="show_nilai_sidang.php">Lihat Jadwal Sidang</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -152,7 +151,6 @@ $conn = new dosenPenguji();
                                                             <th>DOSEN PEMBIMBING 2</th>
                                                             <th>NILAI TOTAL</th>
                                                             <th>NILAI MUTU</th>
-                                                            <th>ACTION</th>
                                                         </tr>
                                                     </thead>
                                                     <?php $i = 1;
@@ -167,10 +165,7 @@ $conn = new dosenPenguji();
                                                                 <td> <?= $mhs['dosen_pembimbing2'] ?> </td>
                                                                 <td> <?= $mhs['nilai_total'] ?> </td>
                                                                 <td> <?= $mhs['nilai_mutu'] ?> </td>
-                                                                <td class="d-flex ">
-                                                                    <a href="update_judul_mahasiswa.php?id=<?= $mhs['id_proposal'] ?> " class="btn btn-warning py-1">Update</a> |
-                                                                    <a href="" class="btn btn-danger py-1">Delete</a> |
-                                                                </td>
+
                                                             </tr>
                                                         </tbody>
                                                     <?php endforeach; ?>

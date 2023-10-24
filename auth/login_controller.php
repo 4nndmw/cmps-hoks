@@ -34,6 +34,10 @@
                         $_SESSION['log'] = 'logged';
                         $_SESSION['role'] = 'penguji';
                         header('location:../views/dosenPenguji/tabel_nilai_sidang.php');
+                    } elseif ($role == "pembingbing") {
+                        $_SESSION['log'] = 'logged';
+                        $_SESSION['role'] = 'pembingbing';
+                        header('location:../views/pembingbing/');
                     } else {
                         $_SESSION['log'] = 'logged';
                         $_SESSION['role'] = 'mahasiswa';

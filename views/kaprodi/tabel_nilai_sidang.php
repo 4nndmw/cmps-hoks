@@ -1,7 +1,9 @@
 <?php
-require '../../controllers/dosen_penguji_controllers/nilai_sidang_controller.php';
+require '../../controllers/kaprodi/make_jadwal_controller.php';
 
-$conn = new dosenPenguji();
+$conn = new makeJadwal();
+
+
 
 ?>
 
@@ -11,7 +13,7 @@ $conn = new dosenPenguji();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIHAT NILAI MAHASISWA </title>
+    <title>Page Table Jadwal Mahasiswa </title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -48,8 +50,6 @@ $conn = new dosenPenguji();
                             </a>
                         </li>
 
-
-
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
@@ -59,7 +59,6 @@ $conn = new dosenPenguji();
                                 <li class="submenu-item ">
                                     <a href="extra-component-avatar.html">Avatar</a>
                                 </li>
-
                             </ul>
                         </li>
 
@@ -76,7 +75,7 @@ $conn = new dosenPenguji();
                             </ul>
                         </li>
 
-                        <li class="sidebar-title">Forms &amp; Tables</li>
+                        <li class="sidebar-title">Forms &amp; Tables Mahasiswa</li>
 
                         <li class="sidebar-item active has-sub">
                             <a href="#" class='sidebar-link'>
@@ -85,12 +84,14 @@ $conn = new dosenPenguji();
                             </a>
                             <ul class="submenu active">
                                 <li class="submenu-item active">
-                                    <a href="#">Input Judul</a>
+                                    <a href="tabel_judul_mahasiswa.php">Tabel Judul Mahasiswa</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-input-group.html">Input Group</a>
+                                <li class="submenu-item active">
+                                    <a href="tabel_nilai_sidang.php">Tabel Jadwal Mahasiswa</a>
                                 </li>
-
+                                <li class="submenu-item active">
+                                    <a href="show_nilai_sidang.php">Lihat Jadwal Sidang</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -109,7 +110,7 @@ $conn = new dosenPenguji();
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last mb-10">
-                            <h3>Admin / Dosen Penguji</h3>
+                            <h3>Admin / Kaprodi</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -120,38 +121,35 @@ $conn = new dosenPenguji();
                         </div>
                     </div>
                 </div>
-                <!-- start line table mahasiswa -->
-                <form class="d-flex mb-10">
-                    <input class="form-control me-2 w-25" type="search" placeholder="Cari data " aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search </button>
-                </form>
-                <!-- end line table mahasiswa -->
+
 
                 <!-- Bordered table start -->
                 <form method="post" action="">
                     <section class="section">
-                        <div class="row" id="table-bordered">
-                            <div class="col-12">
+                        <div class="row " id="table-bordered">
+                            <div class="col-12 ">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Form Jadwal Mahasiswa</h4>
+                                        <h4 class="card-title">Form Jadwal Sidang Mahasiswa</h4>
                                     </div>
-                                    <div class="card-content">
+                                    <div class="card-content m-3">
 
                                         <!-- table bordered -->
                                         <form method="post" action="">
                                             <div class="table-responsive">
                                                 <table class="table table-bordered mb-0">
                                                     <thead class="text-center">
-                                                        <tr class="px-lg-0 ">
+                                                        <tr class="px-lg-0">
                                                             <th>No</th>
                                                             <th>NAMA</th>
                                                             <th>NPM</th>
                                                             <th>JURUSAN</th>
+                                                            <th>Hari/Tanggal</th>
+                                                            <th>JAM</th>
+                                                            <th>TEMPAT SIDANG</th>
                                                             <th>DOSEN PEMBIMBING 1</th>
                                                             <th>DOSEN PEMBIMBING 2</th>
-                                                            <th>NILAI TOTAL</th>
-                                                            <th>NILAI MUTU</th>
+                                                            <th>NASKAH</th>
                                                             <th>ACTION</th>
                                                         </tr>
                                                     </thead>
@@ -163,11 +161,14 @@ $conn = new dosenPenguji();
                                                                 <td> <?= $mhs['nama_mahasiswa'] ?> </td>
                                                                 <td class="text-bold-500"> <?= $mhs['npm'] ?> </td>
                                                                 <td> <?= $mhs['jurusan']  ?> </td>
+                                                                <td> <?= $mhs['hari_tanggal'] ?> </td>
+                                                                <td> <?= $mhs['jam'] ?> </td>
+                                                                <td> <?= $mhs['tempat_sidang'] ?> </td>
                                                                 <td> <?= $mhs['dosen_pembimbing1'] ?> </td>
                                                                 <td> <?= $mhs['dosen_pembimbing2'] ?> </td>
-                                                                <td> <?= $mhs['nilai_total'] ?> </td>
-                                                                <td> <?= $mhs['nilai_mutu'] ?> </td>
+                                                                <td> <?= $mhs['naskah'] ?> </td>
                                                                 <td class="d-flex ">
+                                                                    <a href="./input_nilai_sidang.php?id=<?= $mhs['id_proposal'] ?> " class="btn btn-success py-1">Beri Nilai</a> |
                                                                     <a href="update_judul_mahasiswa.php?id=<?= $mhs['id_proposal'] ?> " class="btn btn-warning py-1">Update</a> |
                                                                     <a href="" class="btn btn-danger py-1">Delete</a> |
                                                                 </td>
@@ -179,20 +180,20 @@ $conn = new dosenPenguji();
                                         </form>
                                     </div>
                                 </div>
-                                <!-- start line pagination -->
-                                <nav aria-label="Page navigation ">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                </nav>
-                                <!-- end line pagination -->
                             </div>
+                            <!-- start line pagination -->
+                            <nav aria-label="Page navigation ">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                            <!-- end line pagination -->
                         </div>
                     </section>
                 </form>
